@@ -1,0 +1,19 @@
+{
+  "name": "productivity-app-backend",
+  "version": "1.0.0",
+  "description": "Backend for Productivity App",
+  "main": "server.js",
+  "scripts": {
+    "start-dev": "nodemon server.js"
+  },
+  "author": "B Dinesh",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^6.8.0",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
