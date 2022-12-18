@@ -8,17 +8,16 @@ app.use(express.json());
 
 app.post('/store', (req,res) => {
    var myActList = req.body.result;
-   var uuidAsResp=uuidCreation(myActList);
-   var actEntry = new ActivityList({uuid: uuidAsResp,activities: myActList});
-   actEntry.save().then(()=>{
-    res.send(uuidAsResp);
+   var actEntry = new ActivityList({activities: myActList});
+   actEntry.save().then(async ()=>{
+    res.send(actEntry._id);
    });
 });
 
 app.delete('/remove',(req,res) => {
-    var uuidToBeRemoved = req.headers.uuid;
-    ActivityList.deleteOne({uuid: uuidToBeRemoved}).then(function(){
-        res.send(uuidToBeRemoved);
+    var idToBeRemoved = req.headers.obid;
+    ActivityList.deleteOne({_id: idToBeRemoved}).then(function(){
+        res.send(idToBeRemoved);
     }).catch(function(err){
         res.send(err);
     });
