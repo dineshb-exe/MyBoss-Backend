@@ -1,7 +1,7 @@
 const express = require('express');
 const ActivityList = require('./db');
-const uuidCreation = require('./utilities');
 const app = express();
+const { find_entry } = require('./utilities');
 const port = 3500;
 
 app.use(express.json());
@@ -16,8 +16,10 @@ app.post('/store', (req,res) => {
 
 app.delete('/remove',(req,res) => {
     var idToBeRemoved = req.headers.obid;
+    var actEntryToBeDeleted = find_entry(idToBeRemoved);
+    console.log("poda",actEntryToBeDeleted);
     ActivityList.deleteOne({_id: idToBeRemoved}).then(function(){
-        res.send(idToBeRemoved);
+        res.send({"resultz ": actEntryToBeDeleted});
     }).catch(function(err){
         res.send(err);
     });
